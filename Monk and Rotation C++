@@ -1,0 +1,62 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	int tCase = 0;
+
+	cin >> tCase;
+	while (tCase != 0)
+	{
+		int arraySize, stepsRot, sizeDiff, startPoint = 0;
+		cin >> arraySize >> stepsRot;
+
+		if (arraySize >= stepsRot)
+		{
+			sizeDiff = stepsRot;
+		}
+		else
+		{
+			sizeDiff = stepsRot % arraySize;
+		}
+
+		int* arr{ new int[arraySize] };
+		int* tempArr{ new int[stepsRot] };
+
+		for (int i = 0; i < arraySize; i++)
+		{
+			cin >> arr[i];
+		}
+
+		startPoint = arraySize - sizeDiff;
+
+		for (int i = 0; i < sizeDiff; i++)
+		{
+			tempArr[i] = arr[startPoint + i];
+		}
+
+		for (int i = arraySize -1; i >= 0; i--)
+		{
+			if (i < sizeDiff)
+			{
+				arr[i] = tempArr[i];
+			}
+			else
+			{
+				arr[i] = arr[i - sizeDiff];
+			}
+		}
+		for (int i = 0; i < arraySize; i++)
+		{
+			cout << arr[i] << " ";
+		}
+
+		cout << "\n";
+
+		delete[] arr;
+		delete[] tempArr;
+
+		tCase--;
+	}
+}
