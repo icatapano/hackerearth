@@ -1,0 +1,53 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	int tCases = 0;
+
+	cin >> tCases;
+	while (tCases != 0)
+	{
+		int nMatrix = 0;
+		int count = 0;
+		cin >> nMatrix;
+
+		int** arr;
+		arr = new int* [nMatrix];
+		for (int i = 0; i < nMatrix; i++)
+		{
+			arr[i] = new int[nMatrix];
+		}
+
+		for (int i = 0; i < nMatrix; i++)
+		{
+			for (int j = 0; j < nMatrix; j++)
+			{
+				cin >> arr[i][j];
+			}
+		}
+
+		for (int i = 0; i < nMatrix; i++)
+		{
+			for (int j = 0; j < nMatrix; j++)
+			{
+				for (int ii = i; ii < nMatrix; ii++)
+				{
+					for (int jj = j; jj < nMatrix; jj++)
+					{
+						if (arr[i][j] > arr[ii][jj])
+						{
+							count++;
+						}
+					}
+				}
+			}
+		}
+		cout << count << "\n";
+		
+		delete[] arr;
+
+		tCases--;
+	}
+}
