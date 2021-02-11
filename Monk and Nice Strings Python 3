@@ -1,0 +1,22 @@
+counter = 0                  # Track how many are less than
+index = 0                    # Track the index of the value to compare
+arr = []                     # Array to store each line of strings
+size = int(input())          # Store first input which is the number of lines of input to compare
+
+for x in range(size):        # Add all lines of input into the array
+    arr.append(input())
+
+while index < size:          # Compare the each value up to that index and count how many have less value
+    n = 0                    # Counter to know when we have reached our index
+    for x in arr:
+        if arr[index] > x:
+            n += 1
+            counter += 1
+        elif index == n:
+            n = 0
+            break
+        else:
+            n += 1
+    print(counter)           # Display count for each value
+    counter = 0              # Reset counter
+    index += 1               # Increment index
