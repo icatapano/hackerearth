@@ -1,0 +1,18 @@
+initial = input()             # Store the initial input
+arr = []                      # Empty array to store strings
+arr = initial.split()         # Spit the string from the target number we want
+str = arr[0]                  # Assign string from inital input
+target = int(arr[1]) - 1      # Assign target value to what array element it will be
+arr = []                      # Clear our array to load with each suffix
+size = len(str)               # Get size of the string
+
+# Seperate each suffix into an array element
+for x in range(size):
+    arr.append(str)
+    str = str[1:]
+
+arr = sorted(arr)
+
+value = arr[target]
+
+print(value)
