@@ -1,0 +1,40 @@
+# Find the max value for the binary string and return that value
+def valueB(binary, length):
+    max = 0
+    start = binary
+    while(True):
+        if(int(binary, 2) > max):
+            max = int(binary,2)
+        binary = binary[1:] + binary[0:1]
+        if(binary == start):
+            break
+    return max
+
+# Count the number of shifts to reach the max value for the binary with the required number of cycles
+def numOfShifts(binary, valB, cycles):
+    counter = 0
+    cycleCounter = 0
+
+    while(True):
+        if(int(binary, 2) == valB):
+            cycleCounter += 1
+        if(cycleCounter == cycles):
+            break
+        binary = binary[1:] + binary[0:1]
+        counter += 1
+    
+    print(counter)
+    return
+
+# Variable to hold how many trial cases we will run
+numTrials = int(input())
+
+# Main function
+for x in range(numTrials):  
+    arr = []
+    arr = input().split()
+    str = input()
+    size = int(arr[0])
+    tarCycle = int(arr[1])
+    tarB = valueB(str, size)
+    numOfShifts(str, tarB, tarCycle)
