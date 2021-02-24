@@ -1,5 +1,5 @@
 # Find the max value for the binary string and return that value
-def valueB(binary, length):
+def valueB(binary):
     max = 0
     start = binary
     while(True):
@@ -34,7 +34,6 @@ for x in range(numTrials):
     arr = []
     arr = input().split()
     str = input()
-    size = int(arr[0])
     tarCycle = int(arr[1])
-    tarB = valueB(str, size)
+    tarB = valueB(str)
     numOfShifts(str, tarB, tarCycle)
