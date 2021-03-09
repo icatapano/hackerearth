@@ -28,7 +28,6 @@ def numOfShifts(binary, valB, cycles):
 
 # Main Function
 numTrials = int(input())
-
 for x in range(numTrials):  
     arr = []
     arr = input().split()
