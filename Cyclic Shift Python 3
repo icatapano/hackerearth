@@ -27,7 +27,6 @@ def numOfShifts(binary, valB, cycles):
     return
 
 # Main Function
-# Variable to hold how many trial cases we will run
 numTrials = int(input())
 
 for x in range(numTrials):  
