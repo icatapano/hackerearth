@@ -26,10 +26,10 @@ def numOfShifts(binary, valB, cycles):
     print(counter)
     return
 
+# Main Function
 # Variable to hold how many trial cases we will run
 numTrials = int(input())
 
-# Main function
 for x in range(numTrials):  
     arr = []
     arr = input().split()
