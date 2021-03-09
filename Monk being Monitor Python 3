@@ -1,0 +1,44 @@
+# Find the highest count of the same number
+def findMax(str):
+    max = 0
+    for x in str:
+        temp = count(x, str)
+        if(temp > max):
+            max = temp
+    return max
+
+# Find the smallest count of the same number
+def findMin(str, h1):
+    min = h1
+    for x in str:
+        temp = count(x, str)
+        if(temp < min):
+            min = temp
+    return min
+
+# Step through string and compare values to count instances
+def count(num, str):
+    found = 0
+    for x in str:
+        if(int(num) == int(x)):
+            found += 1
+    return found
+
+# Find the difference if it exists, if doesn't exist returns -1
+def difference(h1C, h2C):
+    result = h1C - h2C
+    if(result <= 0):
+        return -1
+    return result
+
+# Main Function
+numTrials = int(input())
+
+for x in range(numTrials):
+    size = int(input())
+    str = input().split()
+    h1 = findMax(str)
+    h2 = findMin(str, h1)
+    diff = difference(h1, h2)
+
+    print(diff)
