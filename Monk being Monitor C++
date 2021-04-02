@@ -1,0 +1,75 @@
+#include <algorithm>
+#include <iostream>
+
+using namespace std;
+
+int findMax(int *value, int size);
+int findMin(int *val, int size, int high);
+
+
+int main()
+{
+	int numCases = 0;
+	cin >> numCases;
+
+	for(int i = 0; i < numCases; i++)
+	{
+		int size = 0;
+		cin >> size;
+		int arr [size];
+
+		for(int i = 0; i < size; i++)
+		{
+			cin >> arr[i];
+		}
+		sort(arr, arr + size);
+		int h1 = findMax(arr, size);
+		int h2 = findMin(arr, size, h1);
+		if(h1 == size)
+			cout << -1 << "\n";
+		else
+			cout << h1 - h2 << "\n";
+	}
+}
+
+int findMax(int *value, int size)
+{
+	int max = 0;
+	int count = 1;
+
+	for(int i = 0; i < size; i++)
+	{
+		if(size <= 1)
+			max = 0;
+		else if(value[i] == value[i + 1])
+		{
+			count++;
+			if(count > max)
+				max = count;
+		}
+		else
+			count = 1;
+	}
+	return max;
+}
+
+int findMin(int *val, int size, int high)
+{
+	int min = high;
+	int count = 0;
+
+	for(int i = 0; i < size; i++)
+	{
+		if(size <= 1)
+			min = 1;
+		else if(val[i] == val[i + 1])
+		{
+			count++;
+			if(count < min)
+				min = count;
+		}
+		else
+			count = 0;
+	}
+	return min;
+}
