@@ -1,30 +1,27 @@
 #include <iostream>
+#include <cstdio>
 #include <cmath>
 
 using namespace std;
 
 int binToInt(string bin, int size);
 string cycleArray(string binArray, int size);
-int findMax(string binArray, int size);
-int numShifts(string binArray, int tar, int size, int cycles);
+int cycleShifts(string binArray, int size, int cycles);
 
 int main()
 {
     int numTrials = 0;
-    cin >> numTrials;
+    scanf("%d", &numTrials);
 
     for(int i = 0; i < numTrials; i++)
     {
         int binarySize = 0;
         int kTimes = 0;
-        int target = 0;
-        int shifts = 0;
-        string binaryArray = "";
-        cin >> binarySize >> kTimes;
-        cin >> binaryArray;
-        target = findMax(binaryArray, binarySize);
-        shifts = numShifts(binaryArray, target, binarySize, kTimes);
-        cout << shifts << "\n";
+        scanf("%d %d", &binarySize, &kTimes);
+        char binaryArray[binarySize];
+        scanf("%s", binaryArray);
+        int shifts = cycleShifts(binaryArray, binarySize, kTimes);
+        printf("%d\n", shifts);
     }
 }
 
@@ -42,38 +39,23 @@ int binToInt(string bin, int size)
 
 string cycleArray(string binArray, int size)
 {
-    string copyArray = binArray;
-    char tmpArray[size] = {};
+    char tmp = binArray[0];
 
-    tmpArray[size - 1] = binArray[0];
-    for(int j = 0; j < size - 1; j++)
+    for(int i = 0; i < size -1; i++)
     {
-        tmpArray[j] = binArray[j + 1];
+        binArray[i] = binArray[i +1];
     }
-    return tmpArray;
-}
-
-int findMax(string binArray, int size)
-{
-    int max = binToInt(binArray, size);
-    string copyArray = binArray;
     
-    for(int i = 0; i < size; i++)
-    {
-        string tmpArray = cycleArray(copyArray, size);
-        int temp = binToInt(tmpArray, size);
-        copyArray = tmpArray;
-        if(temp > max)
-            max = temp;
-        
-    }
-    return max;
+    binArray[size - 1] = tmp;
+
+    return binArray;
 }
 
-int numShifts(string binArray, int tar, int size, int cycles)
+int cycleShifts(string binArray, int size, int cycles)
 {
     int count = 0;
-    int cycleCount = 0;
+    int cycleCount = 1;
+    int max = binToInt(binArray, size);
     string copyArray = binArray;
 
     for(int i = 0; i < size; i++)
@@ -83,7 +65,9 @@ int numShifts(string binArray, int tar, int size, int cycles)
         string tmpArray = cycleArray(copyArray, size);
         int temp = binToInt(tmpArray, size);
 
-        if(temp == tar)
+        if(temp > max)
+            max = temp;
+        else if(temp == max)
             cycleCount++;
 
         copyArray = tmpArray;
