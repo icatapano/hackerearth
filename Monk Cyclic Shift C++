@@ -1,29 +1,9 @@
 #include <iostream>
 #include <cstdio>
 #include <cmath>
+#include <bits/stdc++.h>
 
 using namespace std;
-
-int binToInt(string bin, int size);
-string cycleArray(string binArray, int size);
-int cycleShifts(string binArray, int size, int cycles);
-
-int main()
-{
-    int numTrials = 0;
-    scanf("%d", &numTrials);
-
-    for(int i = 0; i < numTrials; i++)
-    {
-        int binarySize = 0;
-        int kTimes = 0;
-        scanf("%d %d", &binarySize, &kTimes);
-        char binaryArray[binarySize];
-        scanf("%s", binaryArray);
-        int shifts = cycleShifts(binaryArray, binarySize, kTimes);
-        printf("%d\n", shifts);
-    }
-}
 
 int binToInt(string bin, int size)
 {
@@ -75,4 +55,24 @@ int cycleShifts(string binArray, int size, int cycles)
         }
         return count;
     }
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int numTrials;
+    cin >> numTrials;
+
+    for(int i = 0; i < numTrials; i++)
+    {
+        int binarySize, kTimes;
+        cin >> binarySize >> kTimes;
+        string binaryArray;
+        cin >> binaryArray;
+        int shifts = cycleShifts(binaryArray, binarySize, kTimes);
+        cout << shifts << "\n";
+    }
+    return 0;
 }
